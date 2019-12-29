@@ -1,0 +1,5 @@
+- name: Sample role 
+  hosts: all 
+  roles:
+    - sample 
+ 

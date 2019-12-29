@@ -1,0 +1,8 @@
+- name: Copy a file 
+  hosts: all 
+  tasks:
+    - name: Copy a file 
+      copy:
+        src: nginx.conf 
+        dest: /tmp/nginx.conf
+

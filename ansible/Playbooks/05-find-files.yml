@@ -1,0 +1,16 @@
+- name: Find the list of file in a directory 
+  hosts: all
+  become: yes
+  tasks:
+    - name: Find all the files 
+      find:
+        paths: /usr/share/nginx/html/ 
+        file_type: any
+      register: OUT 
+
+    - name: Delete the files 
+      file:
+        path: "{{item.path}}"
+        state: absent
+      loop: "{{OUT.files}}"
+      become: yes
