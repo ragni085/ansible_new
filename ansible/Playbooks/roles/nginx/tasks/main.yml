@@ -1,34 +1,34 @@
-- name: install Nginx Web Server
-  package: 
-    name: nginx
-    state: present
+- name: Install Nginx Web Server  
+  package:
+    name: nginx 
+    state: present 
 
-- name: Find all default nginx web content files
+- name: Find all default nginx web content files 
   find:
-    paths: /usr/share/nginx/html/
+    paths: /usr/share/nginx/html/ 
     file_type: any
-  register: OUT
+  register: OUT 
 
-- name: Delete the default nginx web content files
+- name: Delete the default nginx web content files 
   file:
     path: "{{item.path}}"
     state: absent
   loop: "{{OUT.files}}"
   become: yes 
 
-- name:  Download studentapp web content
+- name: Download studentapp  web-content 
   unarchive:
-     src: https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz
-     dest: /usr/share/nginx/html/
-     remote_src: yes
+    src: https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
-- name: Copy configuration file
-  copy: 
-    src: nginx.conf
-    dest: /etc/nginx/nginx.conf    
-
-- name: Start the Nginx Service
+- name: Copy configuration file 
+  copy:
+    src: nginx.conf 
+    dest: /etc/nginx/nginx.conf 
+    
+- name: Start the Nginx Service 
   service:
-    name: nginx
-    state: restarted
-    enabled: yes
+    name: nginx 
+    state: restarted 
+    enabled: yes 
