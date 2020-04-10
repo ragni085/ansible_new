@@ -1,0 +1,18 @@
+- name: Install MariaDB 
+  package:
+    name: mariadb-server 
+    state: present 
+
+- name: Start Service 
+  service:
+    name: mariadb 
+    enabled: yes 
+    state: started 
+
+- name: Download sql file 
+  get_url:
+    url: https://raghu-devops-sessions.s3.amazonaws.com/studentapp-ui-proj1.sql
+    dest: /tmp/student.sql 
+
+- name: Load Schema 
+  shell: mysql < /tmp/student.sql 
