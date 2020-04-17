@@ -17,6 +17,6 @@
 
     - name: Download new war file 
       get_url:
-        url: "http://nexus.devopsproj.com:8081/repository/studentapp-releases/com/jdevs/studentapp/{{RELEASE_VERSION}}-RELEASE/studentapp-{{RELEASE_VERSION}}-RELEASE.war"
+        url: "{{URL}}"
         dest: /home/student/apache-tomcat-8.5.50/webapps/student.war 
       become_user: student 
